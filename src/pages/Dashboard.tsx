@@ -134,8 +134,8 @@ const Dashboard: React.FC = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-white tracking-tight">Overview Dashboard</h1>
-        <p className="text-slate-400 text-sm mt-1">Real-time statistics and corporate directory analytics</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Overview Dashboard</h1>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Real-time statistics and corporate directory analytics</p>
       </div>
 
       {/* 1. ADMIN & HR VIEW */}
@@ -493,15 +493,15 @@ const Dashboard: React.FC = () => {
       {user?.role === 'EMPLOYEE' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Quick Clock Control Card */}
-          <div className="glass-card rounded-xl p-6 border-indigo-500/20 bg-gradient-to-br from-indigo-950/20 to-slate-900/60 lg:col-span-2">
+          <div className="glass-card rounded-xl p-6 border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 dark:from-indigo-950/20 to-slate-100/50 dark:to-slate-900/60 lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Clock size={20} className="text-indigo-400" />
-              <h2 className="text-[15px] font-bold text-slate-200 uppercase tracking-wider">
+              <Clock size={20} className="text-indigo-600 dark:text-indigo-400" />
+              <h2 className="text-[15px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
                 Workforce Shift Log
               </h2>
             </div>
             
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
               Log daily shifts by clicking the buttons below. In-office logs are tracked based on shift policy. 
               Late clock-ins after 9:30 AM will be automatically flagged for HR audit.
             </p>
@@ -521,7 +521,7 @@ const Dashboard: React.FC = () => {
               <button
                 onClick={handleClockIn}
                 disabled={clockLoading || stats.todayStatus !== 'NOT_CLOCKED_IN'}
-                className="glass-button-primary px-6 py-3 font-semibold disabled:bg-indigo-900/10 disabled:border-slate-800 disabled:text-slate-600 border border-indigo-500/20"
+                className="glass-button-primary px-6 py-3 font-semibold disabled:bg-indigo-50 dark:disabled:bg-indigo-900/10 disabled:border-slate-200 dark:disabled:border-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 border border-indigo-500/20"
               >
                 {clockLoading ? 'Processing...' : 'Clock In Shift'}
               </button>
@@ -529,36 +529,36 @@ const Dashboard: React.FC = () => {
               <button
                 onClick={handleClockOut}
                 disabled={clockLoading || stats.todayStatus === 'NOT_CLOCKED_IN' || (stats.todayStatus !== 'NOT_CLOCKED_IN' && stats.clockOutTime !== null)}
-                className="glass-button-secondary px-6 py-3 font-semibold disabled:bg-slate-900/10 disabled:border-slate-950 disabled:text-slate-600 border border-slate-800"
+                className="glass-button-secondary px-6 py-3 font-semibold disabled:bg-slate-100 dark:disabled:bg-slate-900/10 disabled:border-slate-200 dark:disabled:border-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 border border-slate-200 dark:border-slate-800"
               >
                 {clockLoading ? 'Processing...' : 'Clock Out Shift'}
               </button>
             </div>
 
             {/* Current day status tags */}
-            <div className="mt-6 flex flex-wrap gap-6 text-[13px] border-t border-slate-900/60 pt-4">
+            <div className="mt-6 flex flex-wrap gap-6 text-[13px] border-t border-slate-200 dark:border-slate-800/60 pt-4">
               <div>
-                <span className="text-slate-400 font-medium">Today's Status: </span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Today's Status: </span>
                 <span className={`font-semibold ml-1.5 ${
-                  stats.todayStatus === 'PRESENT' ? 'text-emerald-400' :
-                  stats.todayStatus === 'LATE' ? 'text-amber-400' :
-                  stats.todayStatus === 'HALF_DAY' ? 'text-amber-500' : 'text-slate-500'
+                  stats.todayStatus === 'PRESENT' ? 'text-emerald-600 dark:text-emerald-400' :
+                  stats.todayStatus === 'LATE' ? 'text-amber-600 dark:text-amber-400' :
+                  stats.todayStatus === 'HALF_DAY' ? 'text-amber-600 dark:text-amber-500' : 'text-slate-500'
                 }`}>
                   {stats.todayStatus.replace('_', ' ')}
                 </span>
               </div>
               {stats.clockInTime && (
                 <div>
-                  <span className="text-slate-400 font-medium">In: </span>
-                  <span className="text-slate-200 font-semibold ml-1">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">In: </span>
+                  <span className="text-slate-800 dark:text-slate-200 font-semibold ml-1">
                     {new Date(stats.clockInTime).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
               )}
               {stats.clockOutTime && (
                 <div>
-                  <span className="text-slate-400 font-medium">Out: </span>
-                  <span className="text-slate-200 font-semibold ml-1">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Out: </span>
+                  <span className="text-slate-800 dark:text-slate-200 font-semibold ml-1">
                     {new Date(stats.clockOutTime).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
@@ -569,52 +569,52 @@ const Dashboard: React.FC = () => {
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-1 gap-5">
             <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-              <div className="p-3 bg-indigo-500/10 text-indigo-400 rounded-lg">
+              <div className="p-3 bg-indigo-500/10 text-indigo-650 dark:text-indigo-400 rounded-lg">
                 <CheckCircle size={22} />
               </div>
               <div>
-                <p className="text-slate-400 text-xs font-medium tracking-wider">Attendances Logged</p>
-                <p className="text-2xl font-bold text-white mt-1">{stats.totalAttendances} Days</p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-medium tracking-wider">Attendances Logged</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-white mt-1">{stats.totalAttendances} Days</p>
               </div>
             </div>
 
             <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-              <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-lg">
+              <div className="p-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg">
                 <FileText size={22} />
               </div>
               <div>
-                <p className="text-slate-400 text-xs font-medium uppercase tracking-wider">Payslips Issued</p>
-                <p className="text-2xl font-bold text-white mt-1">{stats.totalPayslips} Slips</p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Payslips Issued</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-white mt-1">{stats.totalPayslips} Slips</p>
               </div>
             </div>
 
             <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-              <div className="p-3 bg-amber-500/10 text-amber-400 rounded-lg">
+              <div className="p-3 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-lg">
                 <CalendarDays size={22} />
               </div>
               <div>
-                <p className="text-slate-400 text-xs font-medium tracking-wider">Pending Leaves</p>
-                <p className="text-2xl font-bold text-white mt-1">{stats.pendingLeaves} Requested</p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-medium tracking-wider">Pending Leaves</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-white mt-1">{stats.pendingLeaves} Requested</p>
               </div>
             </div>
 
             <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-              <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-lg">
+              <div className="p-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg">
                 <CheckCircle size={22} />
               </div>
               <div>
-                <p className="text-slate-400 text-xs font-medium tracking-wider">Approved Leaves</p>
-                <p className="text-2xl font-bold text-white mt-1">{stats.approvedLeaves} Approved</p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-medium tracking-wider">Approved Leaves</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-white mt-1">{stats.approvedLeaves} Approved</p>
               </div>
             </div>
 
             <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-              <div className="p-3 bg-rose-500/10 text-rose-400 rounded-lg">
+              <div className="p-3 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-lg">
                 <AlertCircle size={22} />
               </div>
               <div>
-                <p className="text-slate-400 text-xs font-medium tracking-wider">Rejected Leaves</p>
-                <p className="text-2xl font-bold text-white mt-1">{stats.rejectedLeaves} Rejected</p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs font-medium tracking-wider">Rejected Leaves</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-white mt-1">{stats.rejectedLeaves} Rejected</p>
               </div>
             </div>
           </div>

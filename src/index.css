@@ -5,38 +5,50 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --chart-grid: #e2e8f0;
+    --chart-label: #64748b;
+  }
+
+  .dark {
+    --chart-grid: #1e293b;
+    --chart-label: #475569;
+  }
+
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white;
+    @apply bg-slate-50 text-slate-800 dark:bg-black dark:text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300;
   }
 }
 
-/* Glassmorphism styling utilities for high-end look */
-.glass-panel {
-  @apply bg-slate-900/80 backdrop-blur-md border border-slate-800/80 shadow-2xl;
-}
+@layer components {
+  /* Glassmorphism styling utilities for high-end look */
+  .glass-panel {
+    @apply bg-white/95 dark:bg-black/95 backdrop-blur-md border border-slate-200 dark:border-neutral-800 shadow-lg transition-all duration-300;
+  }
 
-.glass-card {
-  @apply bg-slate-900/40 backdrop-blur-sm border border-slate-800/50 hover:border-slate-700/50 hover:bg-slate-900/60 transition-all duration-300 shadow-xl;
-}
+  .glass-card {
+    @apply bg-white dark:bg-neutral-900/90 border border-slate-200 dark:border-neutral-800 hover:bg-slate-50/50 dark:hover:bg-neutral-800/40 transition-all duration-300 shadow-md;
+  }
 
-.glass-input {
-  @apply bg-slate-950/60 border border-slate-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 text-slate-200 placeholder-slate-500 transition-all duration-200 outline-none rounded-lg px-4 py-2.5;
-}
+  .glass-input {
+    @apply bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 dark:focus:ring-indigo-500/30 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all duration-200 outline-none rounded-lg px-4 py-2.5;
+  }
 
-.glass-button-primary {
-  @apply bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-lg shadow-indigo-600/20 active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
-}
+  .glass-button-primary {
+    @apply bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-lg shadow-indigo-600/20 active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
+  }
 
-.glass-button-secondary {
-  @apply bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-medium active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
-}
+  .glass-button-secondary {
+    @apply bg-slate-100 hover:bg-slate-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-neutral-800 font-medium active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
+  }
 
-.glass-button-danger {
-  @apply bg-rose-600 hover:bg-rose-500 text-white font-medium shadow-lg shadow-rose-600/20 active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
-}
+  .glass-button-danger {
+    @apply bg-rose-600 hover:bg-rose-500 text-white font-medium shadow-lg shadow-rose-600/20 active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
+  }
 
-.glass-button-success {
-  @apply bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-lg shadow-emerald-600/20 active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
+  .glass-button-success {
+    @apply bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-lg shadow-emerald-600/20 active:scale-95 disabled:opacity-50 disabled:pointer-events-none transition-all duration-200 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2;
+  }
 }
 
 /* Custom scrollbars */
@@ -46,9 +58,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-950;
+  @apply bg-slate-50 dark:bg-slate-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-800 rounded-full hover:bg-slate-700;
+  @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-slate-400 dark:hover:bg-slate-700;
+}
+
+/* Custom spring animation utility */
+.ease-spring {
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
