@@ -202,7 +202,7 @@ const DashboardLayout: React.FC = () => {
           <div className="flex items-center gap-3 px-2">
             {user?.avatar ? (
               <img
-                src={`http://localhost:5000${user.avatar}`}
+                src={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${user.avatar}`}
                 alt="Avatar"
                 className="w-9 h-9 rounded-full object-cover border border-slate-200 dark:border-slate-700"
               />

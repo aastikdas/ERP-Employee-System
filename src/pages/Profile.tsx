@@ -153,7 +153,7 @@ const Profile: React.FC = () => {
             <div className="relative w-20 h-20 mx-auto mb-4 group cursor-pointer">
               {user?.avatar ? (
                 <img
-                  src={`http://localhost:5000${user.avatar}`}
+                  src={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${user.avatar}`}
                   alt="Avatar"
                   className="w-full h-full rounded-full object-cover border-2 border-indigo-500/20"
                 />
